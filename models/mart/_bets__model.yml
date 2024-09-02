@@ -1,0 +1,11 @@
+version: 2
+
+models:
+    - name: dim_games
+      description: All games master table
+
+    - name: dim_players
+      description: Players master table
+
+    - name: fct_bet
+      description: Fact table abot bet transaction 

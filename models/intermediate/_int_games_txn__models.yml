@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: int_games_txn
+    description: All Games txn
+    
+  - name: int_txn_currency
+    description: All currency conversion info

@@ -29,15 +29,28 @@ A data catalog of data asset origins, owners, definitions, and policies
 ### Solution overview
 The workflow will be deployed in AWS leveraging the below flow.
 
-- The open source dbt-redshift connector is used to create our dbt project including all the necessary models, snapshots, tests, macros and profiles.
-- A Docker image is created and pushed to the ECR repository.
-- The Docker image is run by Fargate as an ECS task triggered via AWS Step Functions. All the Amazon Redshift credentials are stored in Secrets Manager, which is then used by the ECS task to connect with Amazon Redshift.
-- During the run, dbt converts all the models, snapshots, tests and macros to Amazon Redshift compliant SQL statements and it orchestrates the run based on the internal data lineage graph maintained. These SQL commands are run directly on the Redshift cluster and therefore the workload is pushed to Amazon Redshift directly.
-- When the run is complete, dbt will create a set of HTML and JSON files to host the dbt documentation, which describes the data catalog, compiled SQL statements, data lineage graph, and more.
-<img src="images/image.png" alt="Architetcure Diagram" width="600"/>
+In the following code repo, we will explore the use of dbt (data build tool), developed by dbt Labs, to transform data in an AWS-based data lakehouse, built with Amazon Redshift (provisioned or Serverless), Amazon Redshift Spectrum, AWS Glue Data Catalog, and Amazon S3.
+
+<img src="images/arch.png" alt="Architetcure Diagram" width="600"/>
 
 
 
 
-### Resources:
+### Prerequisites
+Prerequisites for this post’s demonstration include the following:
 
+1-Amazon S3 bucket to store raw data;
+2-Amazon Redshift provisioned cluster or Amazon Redshift Serverless;
+3-AWS IAM Role with permissions to Amazon Redshift, Amazon S3, and AWS Glue;
+4-dbt CLI (dbt Core) and dbt Amazon Redshift adapter installed locally;
+5-Microsoft Visual Studio Code (VS Code) with dbt Power User extensions installed;
+6- The code demonstration uses  VS Code, and the dbt CLI interchangeably with the project’s GitHub repository as a source. 
+
+
+### How to run
+
+Try running the following commands:
+````
+dbt run
+dbt test
+````
